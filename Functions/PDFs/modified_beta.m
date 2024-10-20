@@ -1,0 +1,9 @@
+function value = modified_beta(p,mu,sigma)
+    % p either a single number or in the form of [a:b]
+    % center is the mean
+    % spread is the standard deviation
+    value = (p >= 1/4 & p <= 3/4).*power(4*p-1,(4*mu-1).*(4*mu-1).*(3-4*mu)/32./sigma./sigma-2*mu-1/2)...
+                                 .*power(3-4*p,(4*mu-1).*(3-4*mu).*(3-4*mu)/32./sigma./sigma+2*mu-5/2)...
+                      ./beta((4*mu-1).*(4*mu-1).*(3-4*mu)/32./sigma./sigma-2*mu+1/2,(4*mu-1).*(3-4*mu).*(3-4*mu)/32./sigma./sigma+2*mu-3/2)...
+                                 ./power(2,(4*mu-1.).*(3-4*mu)/16./sigma./sigma-4);
+end   
