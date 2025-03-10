@@ -3,8 +3,12 @@ function value = vector_derived_constraint(prob_values,pool_values,beta_index,al
     p_beta = prob_values(beta_index);
     favorite_pool = sum(pool_values(alpha_index:end));
     underdog_pool = sum(pool_values(1:beta_index));
-    p_alpha_density = pool_values(alpha_index);
-    p_beta_density = pool_values(beta_index);    
+
+    dprob = prob_values(alpha_index+1)/2-prob_values(alpha_index-1)/2;
+    p_alpha_density = pool_values(alpha_index)/dprob;
+
+    dprob = prob_values(beta_index+1)/2-prob_values(beta_index-1)/2;
+    p_beta_density = pool_values(beta_index)/dprob;    
 
     term1 = underdog_pool*favorite_pool;
     term2 = p_alpha.*(1-p_alpha)*p_alpha_density*underdog_pool;    
